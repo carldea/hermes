@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        java: [ '8','11' ]
+        java: [ 8.0.192, 8, 11.0.3, 11 ]
         tests: [ 'check', 'integrationTest', 'jmh -Pjmh.iterations=1 -Pjmh.timeOnIteration=5s -Pjmh.warmupIterations=0' ]
     name: Java ${{ matrix.java }} ${{ matrix.tests }}
 
@@ -31,7 +31,7 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: ${{ matrix.java }}
-          distribution: 'adopt'
+          distribution: 'zulu'
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
       - name: Build with Gradle
